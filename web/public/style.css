@@ -1,0 +1,64 @@
+  body {
+    font-family: 'Farro';
+    margin: 0;
+    margin: auto;
+    text-align: center;
+    color: #3D3D3D;
+  }
+  
+  h1 {
+    font-size: calc(1em + 3.5vw);
+    font-weight: bold;
+    color: rgb(54, 54, 54);
+    text-shadow: 2px 2px 0px rgb(197, 197, 197);
+    margin: 0;
+    margin-top: 40px;
+  } 
+
+  #subtitle {
+    color: rgb(167, 167, 167);
+  }
+
+  video {
+    display: block;
+    margin: auto;
+  }
+
+  .videoMargin {
+    width:640px; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    margin: auto;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .removed {
+    display: none;
+  }
+  
+  button {
+    background-color: rgb(31, 31, 31);
+    border: 2px solid rgb(68, 67, 67);
+    border-radius: 10px; 
+    color:rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(68, 67, 67);
+    border-radius: 10px; 
+    color:rgb(63, 63, 63);
+  }
+  

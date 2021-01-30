@@ -33,7 +33,7 @@ while True:
             actual_pred = np.argmax(pred[0])
             diff_pred = 0
     elif diff_pred > 0:
-        diff_pred -= 0
+        diff_pred -= 1
 
 
     cv2.putText(frame, labels[actual_pred], 
