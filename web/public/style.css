@@ -15,16 +15,28 @@
     margin-top: 40px;
   } 
 
+  canvas {
+    position: relative;
+    margin: auto;
+    z-index: 1000;
+  }
+
   #subtitle {
     color: rgb(167, 167, 167);
   }
 
   video {
+    position: absolute;
     display: block;
+    top: 0;
+    left: 0;
     margin: auto;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
   }
 
   .videoMargin {
+    position: relative;
     width:640px; 
     border-radius: 10px; 
     overflow: hidden; 

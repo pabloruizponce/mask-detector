@@ -4,6 +4,7 @@ const enableWebcamButton = document.getElementById('webcamButton');
 const predictionText = document.getElementById('prediction');
 const predictionLine = document.getElementById('predictionLine');
 const loadingButton = document.getElementById('loading')
+const canvas = document.getElementById('output');
 
 const IMAGE_SIZE = 224;
 const LABELS = ['mask', 'no-mask'];
@@ -13,7 +14,6 @@ const NORMALIZATION = (INPUTMAX - INPUTMIN) / 255.0;
 
 let actualPred = 0
 let diffPred = 0
-
 
 ///////////////////////////// NORMALIZE DATA /////////////////////////////
 // github.com/tensorflow/tfjs-models/blob/master/mobilenet/src/index.ts //
@@ -91,28 +91,34 @@ function enableCam(event) {
 }
 
 // Placeholder function for next step.
-function predictWebcam() {
+async function predictWebcam() {
     const img2Predict = cleanImg(video);
     const prediction = model.predict(img2Predict).dataSync();
 
     if (argMax(prediction) != actualPred) {
         diffPred++;
-        if (diffPred > 5) {
+        if (diffPred > 1) {
             actualPred = argMax(prediction)
             diffPred = 0
         }
     } else if (diffPred > 0) {
         diffPred--;
     }
-    
-    //predictionText.innerHTML = LABELS[actualPred]
 
-    if(actualPred == 0) {
-        //predictionText.className = 'green';
-        videoMargin.style.border = 'solid 4px green'
-    } else {
-        //predictionText.className = 'red';
-        videoMargin.style.border = 'solid 4px red'
+    const face = await modelFaces.estimateFaces(
+      video, false, true, false);
+  
+    if (face.length > 0) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const start = face[0].topLeft;
+      const end = face[0].bottomRight;
+      const size = [end[0] - start[0], end[1] - start[1]];
+      if(actualPred == 0) {
+          ctx.strokeStyle = "#6eeb5e";
+      } else {
+          ctx.strokeStyle = "#eb4034";
+      }
+      ctx.strokeRect(start[0], start[1], size[0], size[1]);
     }
 
     window.requestAnimationFrame(predictWebcam);
@@ -120,9 +126,20 @@ function predictWebcam() {
 
 // Load the model.
 var model =  undefined
+var modelFaces = undefined
+var ctx;
 
-tf.loadLayersModel('./model/model.json').then((loadModel) => {
+canvas.width = 640;
+canvas.height = 480;
+ctx = canvas.getContext('2d');
+ctx.lineWidth = "2";
+
+tf.loadLayersModel('./model/model.json').then(async (loadModel) => {
+    modelFaces = await blazeface.load();
     model = loadModel;
     loadingButton.style.display = 'none'
     enableWebcamButton.style.display = 'inline'
 });
+
+
+
