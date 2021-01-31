@@ -7,10 +7,9 @@
   }
   
   h1 {
-    font-size: calc(1em + 3.5vw);
+    font-size: calc(1em + 2vw);
     font-weight: bold;
     color: rgb(54, 54, 54);
-    text-shadow: 2px 2px 0px rgb(197, 197, 197);
     margin: 0;
     margin-top: 40px;
   } 
@@ -21,8 +20,24 @@
     z-index: 1000;
   }
 
+  p {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-bottom: 2vw;
+    text-align: justify;
+  }
+  
+  img {
+    width: 32px;
+  }
+
   #subtitle {
     color: rgb(167, 167, 167);
+  }
+
+  
+  #loading {
+    text-align: center;
   }
 
   video {
@@ -43,18 +58,6 @@
     margin: auto;
   }
 
-  .red {
-    color: red;
-  }
-
-  .green {
-    color: green;
-  }
-
-  .removed {
-    display: none;
-  }
-  
   button {
     background-color: rgb(31, 31, 30);
     border: 2px solid rgb(68, 67, 67);

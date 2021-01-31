@@ -10,10 +10,16 @@
   </head>  
   <body>
     <h1>FACEMASK&nbsp;&nbsp;DETECTION</h1>
-    <p id="subtitle">Using MovilNetv2 and TensorFlow.js</p>
-    
+    <div>
+      <a href="https://github.com/pabloruizp/mask-detector"><img src="imgs/github.png"></a>
+      <img src="imgs/tf.png">
+    </div>
+    <p id="subtitle">
+      Facemask Detection is a webpage with a realtime predictor implemented with TensorFlow.js. The model used is a modifie version of MobilNet.v2 modified for this specific task.
+      It is also implemented the blazeface model for face recoginition.
+    </p>
     <p id="loading">Model loading...</p>
-    <button id="webcamButton" style="display: none;">Enable webcam</button>
+    <button id="webcamButton" style="display: none;"><b>S T A R T</b></button>
     <p id="predictionLine" style="display: none;">Prediction: <span id="prediction"></span></p>
     <div id="videoMargin" class="videoMargin">
         <canvas id="output"></canvas>
